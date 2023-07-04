@@ -17,7 +17,7 @@ jobs:
         id: pullFridaLatestRelease
         uses: actions/github-script@v3.1.0
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.GH_TOKEN}}
           script: |
             const releaseResponse = await github.repos.getLatestRelease({
               owner: 'frida',
@@ -31,7 +31,7 @@ jobs:
         id: checkReleaseVersion
         uses: actions/github-script@v3.1.0
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.GH_TOKEN}}
           script: |
             try {
               const releaseVersion = '${{ steps.pullFridaLatestRelease.outputs.FRIDA_VERSION }}'
@@ -67,7 +67,7 @@ jobs:
         id: createRelease
         name: Create Runner Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           tag_name: "${{ needs.check_version.outputs.FRIDA_VERSION }}"
           release_name: "${{ needs.check_version.outputs.FRIDA_VERSION }}"
@@ -127,7 +127,7 @@ jobs:
       id: checkReleaseVersion
       uses: actions/github-script@v3.1.0
       with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
+        github-token: ${{secrets.GH_TOKEN}}
         script: |
           try {
             const releaseVersion = '${{ needs.check_version.outputs.FRIDA_VERSION }}'
@@ -174,7 +174,7 @@ jobs:
     - name: Upload android arm frida-server for Undetected-Frida
       uses: actions/upload-release-asset@v1.0.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
         asset_path: '${{ github.workspace }}/frida/build/frida-android-arm/bin/frida-server.xz'
@@ -184,7 +184,7 @@ jobs:
     - name: Upload android arm64 frida-server for Undetected-Frida
       uses: actions/upload-release-asset@v1.0.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
         asset_path: '${{ github.workspace }}/frida/build/frida-android-arm64/bin/frida-server.xz'
@@ -194,7 +194,7 @@ jobs:
     - name: Upload android x86 frida-server for Undetected-Frida
       uses: actions/upload-release-asset@v1.0.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
         asset_path: '${{ github.workspace }}/frida/build/frida-android-x86/bin/frida-server.xz'
@@ -204,7 +204,7 @@ jobs:
     - name: Upload android x86_64 frida-server for Undetected-Frida
       uses: actions/upload-release-asset@v1.0.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
         asset_path: '${{ github.workspace }}/frida/build/frida-android-x86_64/bin/frida-server.xz'
@@ -214,7 +214,7 @@ jobs:
     - name: Upload android arm frida-inject for Undetected-Frida
       uses: actions/upload-release-asset@v1.0.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
         asset_path: '${{ github.workspace }}/frida/build/frida-android-arm/bin/frida-inject.xz'
@@ -224,7 +224,7 @@ jobs:
     - name: Upload android arm64 frida-inject for Undetected-Frida
       uses: actions/upload-release-asset@v1.0.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
         asset_path: '${{ github.workspace }}/frida/build/frida-android-arm64/bin/frida-inject.xz'
@@ -234,7 +234,7 @@ jobs:
     - name: Upload android x86 frida-inject for Undetected-Frida
       uses: actions/upload-release-asset@v1.0.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
         asset_path: '${{ github.workspace }}/frida/build/frida-android-x86/bin/frida-inject.xz'
@@ -244,7 +244,7 @@ jobs:
     - name: Upload android x86_64 frida-inject for Undetected-Frida
       uses: actions/upload-release-asset@v1.0.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
         asset_path: '${{ github.workspace }}/frida/build/frida-android-x86_64/bin/frida-inject.xz'
@@ -254,7 +254,7 @@ jobs:
     - name: Upload android arm frida-gadget for Undetected-Frida
       uses: actions/upload-release-asset@v1.0.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
         asset_path: '${{ github.workspace }}/frida/build/frida-android-arm/lib/frida/32/frida-gadget.so.xz'
@@ -264,7 +264,7 @@ jobs:
     - name: Upload android arm64 frida-gadget for Undetected-Frida
       uses: actions/upload-release-asset@v1.0.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
         asset_path: '${{ github.workspace }}/frida/build/frida-android-arm64/lib/frida/64/frida-gadget.so.xz'
